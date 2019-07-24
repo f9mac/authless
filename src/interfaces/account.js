@@ -41,7 +41,8 @@ class AccountInterface {
     let userDataDir;
     if (virginProfile) profileDirName += `-${uuid()}`;
     if (process.env.CHROME_USER_DATA_DIR) {
-      userDataDir = path.join(process.env.CHROME_USER_DATA_DIR, profileDirName);
+      userDataDir = path.resolve(
+        path.join(process.env.CHROME_USER_DATA_DIR, profileDirName));
     }
 
     this.debug(`launching browser with userDataDir: ${userDataDir}`);
