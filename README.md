@@ -1,4 +1,4 @@
-# Authless
+# Authless • [![Maintainability](https://api.codeclimate.com/v1/badges/0d08b1e07557c386f3ec/maintainability)](https://codeclimate.com/github/f9mac/authless/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/0d08b1e07557c386f3ec/test_coverage)](https://codeclimate.com/github/f9mac/authless/test_coverage)
 
 A browserless, "Chrome-as-a-service", extension adding advanced authentication management capabilities.
 
