@@ -1,8 +1,6 @@
 /* eslint-env node, mocha */
 const assert = require('assert');
-const assertThrows = require('assert-throws-async');
 const config = require('../config.js');
-const delay = require('delay');
 const {
   Authless,
   Router,
@@ -24,24 +22,22 @@ describe('Authless:Service:Linkedin', () => {
     testRouter = new Router([...LinkedinService.getRoutes(linkedinService, Route)]);
   });
 
-  it('initializes', () => {
-    new Authless(testRouter);
-  });
-
   describe('.isAuthenticated', () => {
     context('is authenticated', () => {
-      before(async () => {
-        const authless = new Authless(testRouter);
-        const account = authless.findAccountByUrl('https://linkedin.com');
-        return authless.useBrowserWithAccount(account, async browser => {
-          //const page = await browser.newPage();
-          //return account.authenticate(page);
-        });
-      });
-
       it('returns true', async () => {
         const authless = new Authless(testRouter);
         const account = authless.findAccountByUrl('https://linkedin.com');
+        await authless.useBrowserWithAccount(account, async browser => {
+          // set cookies
+          const page = await browser.newPage();
+          return page.setCookie({
+            name: 'test',
+            value: '123',
+            url: 'https://linkedin.com',
+            // make that cookie expire in 25 years
+            expires: Date.now() + 3600 * 60 * 24 * 365 * 25
+          });
+        });
         const isAuthenticated = await authless.useBrowserWithAccount(account, async browser => {
           const page = await browser.newPage();
           return account.isAuthenticated(page);

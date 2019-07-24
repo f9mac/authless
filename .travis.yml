@@ -1,9 +1,14 @@
 env:
   global:
     - CC_TEST_REPORTER_ID=69ed68b12413bc429bafbba6cba14b517e9631481405f0367e2eb0339ed378b5
+    # Application specific
+    - CHROME_USER_DATA_DIR=/tmp
+    # Test specific (on Travis CI as secret ENVs)
 language: node_js
 node_js:
   - '8'
+addons:
+  chrome: stable
 before_script:
   - npm install
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter

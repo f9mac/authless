@@ -2,6 +2,18 @@
 
 A browserless, "Chrome-as-a-service", extension adding advanced authentication management capabilities.
 
+## Install
+
+```
+yarn add authless
+# - or -
+npm install authless
+```
+
+## ENV
+
+- **`CHROME_USER_DATA_DIR`**: If set user data profiles are stored in that directory, otherwise chrome default dir is used. Example: `/path/to/dir/`. Default: `undefined`
+
 ## Usage
 
 ```javascript
